@@ -519,14 +519,18 @@
   base_path <- "C:\\My Directory" # Set to actual directory
   identity_cpp_file <- file.path(base_path, "calculateIdentity.cpp")
   identity_chunk_dir <- file.path(base_path, "chunks\\")
-  fasta_file <- file.path(base_path, "data\\16S_ribosomal_sequences.fasta")
-
+  zipped_fasta_file <- file.path(base_path, "data\\16S_ribosomal_sequences.zip")
+  fasta_file_name <- "16S_ribosomal_sequences.fasta"
+  
 #=== Test functions === 
   test_identity_calculation(cpp_file = identity_cpp_file)
   
 #===  Calculate identities ===
   # Load DNA sequences from a FASTA file
-  dna_set <- Biostrings::readDNAStringSet(fasta_file)
+  temp_dir <- tempdir()
+  unzip(zipped_fasta_file, files = fasta_file_name, exdir = temp_dir)
+  extracted_fasta_file <- file.path(temp_dir, fasta_file_name)
+  dna_set <- Biostrings::readDNAStringSet(extracted_fasta_file)
   
   # Perform calculation
   calculate_identity_chunks(dna_set, n_chunks = 1000, cpp_file = identity_cpp_file, chunk_dir = identity_chunk_dir)
