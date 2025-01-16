@@ -1,5 +1,5 @@
 # Sequence Identity
-This collection of scripts calculates identity pairwise identity among a set of sequences.  The scripts also download data from the LPSN database and calculate relative evolutionary divergence.  Together, they perform analyses described a forthcoming manuscript.  
+This collection of scripts calculates pairwise identity among a set of sequences.  The scripts also download data from the LPSN database and calculate relative evolutionary divergence.  Together, they perform analyses described a forthcoming manuscript.  
 
 ## Requirements
 Installation of [R] (v. 4.4.2 or later). 
